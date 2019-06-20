@@ -62,26 +62,32 @@ def prodeut():
 if __name__ == '__main__':
 
 
-    #运行WEB服务器
+#运行WEB服务器
     task0 = Process(target=service)
     task0.start()
 
-    #抓取代理
+
+#抓取代理
     task1 = Process(target=proxies)
     task1.start()
 
-    #获取COOKIES
-    task2 = Process(target=cookies)
+    # 验证过多无效代理
+    task2 = Process(target=verify)
     task2.start()
 
-    # 抓取数据
-    task3 = Process(target=prodeut)
+    # 代理提取API
+    task3 = Process(target=proxy.http)
     task3.start()
 
-    # 验证过多无效代理
-    task4 = Process(target=verify)
+
+#获取COOKIES
+    task4 = Process(target=cookies)
     task4.start()
 
-    # 代理提取API
-    task5 = Process(target=proxy.http)
+    # 抓取数据
+    task5 = Process(target=prodeut)
     task5.start()
+
+
+
+
