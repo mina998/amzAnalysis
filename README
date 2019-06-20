@@ -1,0 +1,11 @@
+# 操作步骤
+1. cd ~
+2. git clone https://github.com/mina998/amzAnalysis.git
+3. cd amzAnalysis
+4. pip3 install -r ./requirements.txt
+5. apt install redis
+6. cp data.bak.db data.db
+7. python3 manage.py
+
+# 数据控制台
+http://ip:1082
