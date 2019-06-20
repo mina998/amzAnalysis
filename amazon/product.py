@@ -63,7 +63,7 @@ class Product():
 
                 code = resp.status
 
-                if code not in [200, 201]: return '{}, [{}]HTTP请求失败. 代理{}'.format(asin, code, proxy)
+                if code not in [200, 201]: return '{}, [{}]HTTP请求失败. 代理:{}'.format(asin, code, proxy)
 
 
                 html = await resp.text()
@@ -215,32 +215,35 @@ class Product():
         :return:
         """
 
-        time.sleep(300)
+        if sqlite.execute('select count(*) from listing').fetchone()[0] ==0: time.sleep(300)
 
         loop = asyncio.get_event_loop()
 
         i = 0
         #下次执行时间戳
-        two = Tools.next_time_stamp()
 
         while True:
-            #
+
             i +=1
+            # 下次执行剩余
+            exe = Tools.next_time_stamp()- Tools.time_stamp_now(t=True)
             #每次查询几香槟酒
             num = random.randint(1,5)
 
             sql = 'select id,asin,seller from listing where status =0 order by random() limit {}'.format(num)
 
             res = sqlite.execute(sql).fetchall()
-            # 下次执行剩余
-            exe = two - Tools.time_stamp_now(t=True)
 
             if not res:
 
-                if exe <1: break
+                if exe < 1:
+                    sqlite.execute('update listing set status=0')
+                    sqlite.commit()
+
                 print('倒计时: {}秒'.format(exe))
-                time.sleep(10)
+                time.sleep(5)
                 continue
+
 
             task = [self.__run_(row, self.__proxy_get(i%5)) for row in res]
             loop.run_until_complete(asyncio.wait(task))

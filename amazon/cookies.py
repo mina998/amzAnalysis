@@ -9,12 +9,13 @@ class Cookies():
 
 
 
-    def __init__(self, debug=False):
+    def __init__(self, zip=10001, debug=False):
         """
         # 初始化
         :param debug:
         """
         self.__debug = debug
+        self.__zip = zip
 
 
 
@@ -78,7 +79,7 @@ class Cookies():
         link = 'https://www.amazon.com/gp/delivery/ajax/address-change.html'
         data = {
             'locationType': 'LOCATION_INPUT',
-            'zipCode': 10001,
+            'zipCode': self.__zip,
             'storeContext': 'generic',
             'deviceType': 'web', 'pageType': 'Gateway',
             'actionSource': 'glow'

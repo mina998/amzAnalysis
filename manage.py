@@ -13,7 +13,7 @@ debug = True
 
 def service():
 
-    app.debug = 1
+    app.debug = False
     app.run(host='0.0.0.0',port=1081)
 
 
@@ -41,7 +41,7 @@ def verify():
 
 def cookies():
 
-    exe  = Cookies(debug=debug)
+    exe  = Cookies(zip=10001, debug=debug)
 
     loop = asyncio.get_event_loop()
     task = [exe.run() for i in range(5)]
