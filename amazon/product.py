@@ -236,13 +236,14 @@ class Product():
 
             if not res:
 
-                if exe < 1:
-                    sqlite.execute('update listing set status=0')
-                    sqlite.commit()
+                if exe > 1:
 
-                print('倒计时: {}秒'.format(exe))
-                time.sleep(5)
-                continue
+                    print('倒计时: {}秒'.format(exe))
+                    time.sleep(10)
+                    continue
+
+                sqlite.execute('update listing set status=0')
+                sqlite.commit()
 
 
             task = [self.__run_(row, self.__proxy_get(i%5)) for row in res]
