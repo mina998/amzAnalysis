@@ -36,7 +36,7 @@ class Tools():
         # 转为时间数组
         timeArray = time.strptime(str(tomorrow), "%Y-%m-%d")
         # 转为时间戳
-        return int(time.mktime(timeArray))
+        return int(time.mktime(timeArray)) - 3600
 
     @staticmethod
     def sleep(s=1):

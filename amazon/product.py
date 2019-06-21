@@ -226,7 +226,7 @@ class Product():
 
             i +=1
             # 下次执行剩余
-            exe = Tools.next_time_stamp()- Tools.time_stamp_now(t=True)
+            exe = Tools.next_time_stamp() - Tools.time_stamp_now(t=True)
             #每次查询几香槟酒
             num = random.randint(1,5)
 

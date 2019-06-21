@@ -38,8 +38,8 @@ class Proxy(Spider):
         crawls = Process(target=self.crawl)
         crawls.start()
 
-        verify = Process(target=self.verify)
-        verify.start()
+        # verify = Process(target=self.verify)
+        # verify.start()
 
 
 
